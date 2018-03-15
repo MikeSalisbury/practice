@@ -66,3 +66,13 @@ console.log(reverse("atom") === "mota");
 console.log(reverse("q") === "q");
 console.log(reverse("id") === "di");
 console.log(reverse("") === "");
+
+// 6) receives a start and end value, returns an array
+// from start up to end
+
+function range(starting, ending) {
+  if (starting === ending) return [starting];
+  let result = range(starting, ending-1);
+  result.push(ending);
+  return result;
+}
