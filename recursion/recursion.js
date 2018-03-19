@@ -114,3 +114,13 @@ function otherExp(b, n) {
     return b * Math.pow(exp(b, (n-1) / 2), 2);
   }
 }
+
+
+// receives an integer, n, and returns the first n Fibonacci numbers
+function fibonacci(n) {
+  if (n === 1) return [0];
+  if (n === 2) return [0, 1];
+  let arr = fibonacci(n-1);
+  arr.push(arr[arr.length -2] + arr[arr.length -1]);
+  return arr;
+}
