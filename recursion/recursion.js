@@ -76,3 +76,41 @@ function range(starting, ending) {
   result.push(ending);
   return result;
 }
+
+//receives an array of numbers and recursively sums them
+function sumRec(arr) {
+  if (arr.length <= 1) return arr[0];
+  let sum = 0;
+  sum += arr[0] + sumRec(arr.slice(1));
+  return sum;
+}
+
+// receives a base and exponent, returns the base raise to the power of the exponent (base ^ exp)
+//
+// write two versions:
+// # this is math, not Ruby methods.
+//
+// # version 1
+// exp(b, 0) = 1
+// exp(b, n) = b * exp(b, n - 1)
+//
+// # recursion 2
+// exp(b, 0) = 1
+// exp(b, 1) = b
+// exp(b, n) = exp(b, n / 2) ** 2             [for even n]
+// exp(b, n) = b * (exp(b, (n - 1) / 2) ** 2) [for odd n]
+
+function exp(b, n) {
+  if (n === 0) return 1;
+  return b * exp(b, n - 1);
+}
+
+function otherExp(b, n) {
+  if (n === 0) return 1;
+  if (n === 1) return b;
+  if (n % 2 === 0) {
+    return Math.pow(exp(b, n/2), 2);
+  } else {
+    return b * Math.pow(exp(b, (n-1) / 2), 2);
+  }
+}
