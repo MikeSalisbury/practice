@@ -124,3 +124,23 @@ function fibonacci(n) {
   arr.push(arr[arr.length -2] + arr[arr.length -1]);
   return arr;
 }
+
+// deep dup of an Array!
+// Aside: type-checking in javascript
+// Type checking in JS can get a very strange at times and it is best
+// practice to avoid it if at all possible. Check out the Typeof operator
+// section of this article. For this problem though, we will need to do it.
+// Use the getType method from the True Object types section in that same
+// article to see a clever way to type-check. This method may not make a
+// whole lot of sense now, but it will in a few days.
+function deepDup(arr) {
+
+  if (arr.length <= 1) return arr;
+  let result = [];
+  if (typeof(arr[0]) instanceof Array) {
+    deepDup(arr[0]);
+  } else {
+    result.push(arr[0] + deepDup(arr.slice(1)));
+  }
+  return result;
+}
