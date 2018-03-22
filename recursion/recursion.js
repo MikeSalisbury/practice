@@ -155,5 +155,14 @@ console.log(`deepDup duped = ${JSON.stringify(dupedArray)} (should be mutated)`)
 
 // receives a sorted array, returns the index of the target or -1 if not found
 function bsearch(arr, target) {
+  if (arr.length < 1) return -1;
+  let mid = Math.floor(arr.length / 2);
+  if (arr[mid] === target) return mid;
   
+  if (arr[mid] < target) {
+    return mid + bsearch(arr.slice(mid), target);
+  } else {
+    return bsearch(arr.slice(0, mid), target);
+  }
+
 }
