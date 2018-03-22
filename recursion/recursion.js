@@ -135,12 +135,25 @@ function fibonacci(n) {
 // whole lot of sense now, but it will in a few days.
 function deepDup(arr) {
 
-  if (arr.length <= 1) return arr;
-  let result = [];
-  if (typeof(arr[0]) instanceof Array) {
-    deepDup(arr[0]);
-  } else {
-    result.push(arr[0] + deepDup(arr.slice(1)));
-  }
-  return result;
+    if (!(arr instanceof Array)) {
+      return arr;
+    }
+
+    return arr.map((el) => {
+      return deepDup(el);
+    });
+}
+
+const array = [[2],3];
+const dupedArray = deepDup(array);
+console.log(`deepDup original = ${JSON.stringify(array)}`);
+
+dupedArray[0].push(4);
+
+console.log(`deepDup original = ${JSON.stringify(array)} (should not be mutated)`);
+console.log(`deepDup duped = ${JSON.stringify(dupedArray)} (should be mutated)`);
+
+// receives a sorted array, returns the index of the target or -1 if not found
+function bsearch(arr, target) {
+  
 }
