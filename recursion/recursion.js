@@ -77,7 +77,7 @@ function range(starting, ending) {
   return result;
 }
 
-//receives an array of numbers and recursively sums them
+// 7) receives an array of numbers and recursively sums them
 function sumRec(arr) {
   if (arr.length <= 1) return arr[0];
   let sum = 0;
@@ -85,7 +85,8 @@ function sumRec(arr) {
   return sum;
 }
 
-// receives a base and exponent, returns the base raise to the power of the exponent (base ^ exp)
+// 8) receives a base and exponent, returns the base raise
+// to the power of the exponent (base ^ exp)
 //
 // write two versions:
 // # this is math, not Ruby methods.
@@ -116,7 +117,7 @@ function otherExp(b, n) {
 }
 
 
-// receives an integer, n, and returns the first n Fibonacci numbers
+// 9) receives an integer, n, and returns the first n Fibonacci numbers
 function fibonacci(n) {
   if (n === 1) return [0];
   if (n === 2) return [0, 1];
@@ -125,7 +126,7 @@ function fibonacci(n) {
   return arr;
 }
 
-// deep dup of an Array!
+// 10) deep dup of an Array!
 // Aside: type-checking in javascript
 // Type checking in JS can get a very strange at times and it is best
 // practice to avoid it if at all possible. Check out the Typeof operator
@@ -153,7 +154,7 @@ dupedArray[0].push(4);
 console.log(`deepDup original = ${JSON.stringify(array)} (should not be mutated)`);
 console.log(`deepDup duped = ${JSON.stringify(dupedArray)} (should be mutated)`);
 
-// receives a sorted array, returns the index of the target or -1 if not found
+// 11) receives a sorted array, returns the index of the target or -1 if not found
 function bsearch(arr, target) {
   if (arr.length < 1) return -1;
   let mid = Math.floor(arr.length / 2);
@@ -164,5 +165,41 @@ function bsearch(arr, target) {
   } else {
     return bsearch(arr.slice(0, mid), target);
   }
+
+}
+
+// 12) receives an array, returns a sorted copy of the array by
+// implementing merge sort sorting algorithm
+
+function mergesort(arr) {
+  if (arr.length < 2) return arr;
+  let mid = Math.floor(arr.length / 2);
+  let left = mergesort(arr.slice(0, mid));
+  let right = mergesort(arr.slice(mid));
+
+  return mergesortHelper(left, right);
+}
+
+function mergesortHelper(left, right) {
+  let result = [];
+  while (left.length > 0 && right.length > 0) {
+    if (left[0] > right[0]) {
+      result.push(right.shift());
+    } else {
+      result.push(left.shift());
+    }
+  }
+
+  if (left.length > 0) {
+    while (left.length > 0) {
+      result.push(left.shift());
+    }
+  } else {
+    while (right.length > 0) {
+      result.push(right.shift());
+    }
+  }
+
+  return result;
 
 }
