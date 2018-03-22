@@ -158,9 +158,9 @@ function bsearch(arr, target) {
   if (arr.length < 1) return -1;
   let mid = Math.floor(arr.length / 2);
   if (arr[mid] === target) return mid;
-  
   if (arr[mid] < target) {
-    return mid + bsearch(arr.slice(mid), target);
+    let search = bsearch(arr.slice(mid+1, arr.length), target);
+    return (search === -1 ? -1 : mid + 1 + search);
   } else {
     return bsearch(arr.slice(0, mid), target);
   }
