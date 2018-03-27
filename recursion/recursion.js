@@ -190,16 +190,22 @@ function mergesortHelper(left, right) {
     }
   }
 
-  if (left.length > 0) {
-    while (left.length > 0) {
-      result.push(left.shift());
-    }
-  } else {
-    while (right.length > 0) {
-      result.push(right.shift());
-    }
-  }
 
-  return result;
 
+  return result.concat(left, right);
+
+}
+
+// 13) receives an array, returns an array containing all
+// the subsets of the original array
+// [[]]
+// [[],[1]]
+// [[], [1], [2], [1, 2]]
+function subsets(arr) {
+  if (arr.length < 1) return [[]];
+  let first = arr[0];
+  let afterFirst = subsets(arr.slice(1));
+
+  const result = afterFirst.map(sub => [first].concat(sub));
+  return afterFirst.concat(result);
 }
