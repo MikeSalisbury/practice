@@ -209,3 +209,19 @@ function subsets(arr) {
   const result = afterFirst.map(sub => [first].concat(sub));
   return afterFirst.concat(result);
 }
+
+function permutations(arr) {
+  if (arr.length <= 1) return arr;
+  let first = arr.shift();
+  let perms = permutations(arr);
+  let result = [];
+
+  for(let i = 0; i < perms.length; i++) {
+    for(let j = 0; j < perms[i].length; j++) {
+      result.push(perms[i].slice(0, j).concat(first, perms[i].slice(j)));
+    }
+  }
+
+  return result;
+
+}
